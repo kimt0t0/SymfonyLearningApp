@@ -13,15 +13,18 @@ class CategoryController
         return new Response('This is my test response...');
     }
 
-    #[Route('/themes')]
-    public function themespage()
-    {
-        return new Response('This is a themes list :-)');
-    }
+    // #[Route('/themes')]
+    // public function themespage()
+    // {
+    // }
 
-    #[Route('/themes/{slug}')]
-    public function themepage()
+    #[Route('/themes/{theme}')]
+    public function themepage(string $theme = null)
     {
-        return new Response('This is an album page !');
+        if ($theme) {
+            $title = str_replace('-', ' ', $theme);
+            return new Response('Theme: ' . $title);
+        }
+        return new Response('This is a themes list :-)');
     }
 }
