@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+{{ parent() }} | Thème: {{ title|capitalize }}
+{% endblock %}
+
+{% block pagetitle %}
+<h2>Thème - {{ title|capitalize }}</h2>
+{% endblock %}
+
+{% block pagecontents %}
+<ul>
+    {% for track in tracks %}
+    <li>{{ track.song }} - {{ track.artist|upper }}</li>
+    {% endfor %}
+</ul>
+{% endblock %}

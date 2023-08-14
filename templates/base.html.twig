@@ -2,7 +2,7 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
+        <title>{% block title %}KiMusic{% endblock %}</title>
         <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
         {% block stylesheets %}
         {% endblock %}
@@ -11,6 +11,31 @@
         {% endblock %}
     </head>
     <body>
-        {% block body %}{% endblock %}
+        {% block body %}
+            <div class="classic-container">
+                <header>
+                    <h1>KiMusic</h1>
+                    <nav>
+                    {% block navlist %}
+                        <a href='/' title='accueil' class='nav-link'>Accueil</a>
+                        <a href='/themes' title='thèmes' class='nav-link'>Thèmes</a>
+                    {% endblock %}
+                    </nav>
+                </header>
+                <main>
+                    <div class="hero-container">
+                        {% block pagetitle %}
+                        {% endblock %}
+                    </div>
+                    <div class="contents-container">
+                        {% block pagecontents %}
+                        {% endblock %}
+                    </div>
+                </main>
+                <footer>
+                    <p>This training website is developed by Kim Robert with Symfony/Twig.</p>
+                </footer>
+            </div>
+        {% endblock %}
     </body>
 </html>

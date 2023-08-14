@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+{{ parent() }} | Thèmes
+{% endblock %}
+
+{% block pagetitle %}
+<h2>{{ title|capitalize }}</h2>
+{% endblock %}
+
+{% block pagecontents %}
+<ul class="themes">
+    {% for theme in themes %}
+    <li class="theme-item">
+        <a href={{ theme.path }} title={{theme.title}} class="theme-link">{{ theme.title|upper }}</a>
+    </li>
+    {% endfor %}
+</ul>
+{% endblock %}

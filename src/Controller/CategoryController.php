@@ -2,15 +2,17 @@
 
 namespace App\Controller;
 
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-class CategoryController
+class CategoryController extends AbstractController
 {
     #[Route('/')]
     public function landingpage()
     {
-        return new Response('This is my test response...');
+        $title = 'Ma Musique';
+        return $this->render('base.html.twig');
     }
 
     // #[Route('/themes')]
@@ -23,8 +25,30 @@ class CategoryController
     {
         if ($theme) {
             $title = str_replace('-', ' ', $theme);
-            return new Response('Theme: ' . $title);
+            $tracks = [
+                ['song' => 'Rouge Colère', 'artist' => 'Sages comme des Sauvages'],
+                ['song' => 'Gender Binary', 'artist' => ' Ryan Cassata'],
+                ['song' => 'Chaotic Gender Neutral', 'artist' => 'Murder Person for Hire'],
+                ['song' => 'Mad World', 'artist' => 'Gary Jules']
+            ];
+            return $this->render(
+                'themes/themepage.html.twig',
+                [
+                    'title' => $title,
+                    'tracks' => $tracks
+                ]
+            );
+        } else {
+            $title = 'Thèmes Musicaux';
+            $themes = [
+                ['title' => 'Détente', 'path' => '/themes/detente'],
+                ['title' => 'Queer', 'path' => '/themes/queer'],
+                ['title' => 'Tous', 'path' => '/themes/tous']
+            ];
+            return $this->render('themes/homepage.html.twig', array(
+                'title' => $title,
+                'themes' => $themes
+            ));
         }
-        return new Response('This is a themes list :-)');
     }
 }
