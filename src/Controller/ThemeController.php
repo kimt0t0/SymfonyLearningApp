@@ -3,13 +3,15 @@
 namespace App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Twig\Environment;
 
 #[Route('/themes')]
 class ThemeController extends AbstractController
 {
     #[Route('/', name: 'app_themes')]
-    public function themespage()
+    public function themespage(Environment $twig)
     {
         $title = 'Thèmes Musicaux';
         $themes = [
@@ -17,10 +19,11 @@ class ThemeController extends AbstractController
             ['title' => 'Queer', 'theme' => 'queer'],
             ['title' => 'Tous', 'theme' => 'tous']
         ];
-        return $this->render('themes/themespage.html.twig', array(
+        $html = $twig->render('themes/themespage.html.twig', array(
             'title' => $title,
             'themes' => $themes
         ));
+        return new Response($html);
     }
 
     #[Route('/{theme}', name: 'app_theme', methods: ['GET', 'PATCH', 'DELETE'])]
