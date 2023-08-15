@@ -3,34 +3,28 @@
 namespace App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 #[Route('/themes')]
-class CategoryController extends AbstractController
+class ThemeController extends AbstractController
 {
-    #[Route('/')]
-    public function landingpage()
+    #[Route('/', name: 'app_themes')]
+    public function themespage()
     {
         $title = 'Thèmes Musicaux';
         $themes = [
-            ['title' => 'Détente', 'path' => '/themes/detente'],
-            ['title' => 'Queer', 'path' => '/themes/queer'],
-            ['title' => 'Tous', 'path' => '/themes/tous']
+            ['title' => 'Détente', 'theme' => 'detente'],
+            ['title' => 'Queer', 'theme' => 'queer'],
+            ['title' => 'Tous', 'theme' => 'tous']
         ];
-        return $this->render('themes/homepage.html.twig', array(
+        return $this->render('themes/themespage.html.twig', array(
             'title' => $title,
             'themes' => $themes
         ));
     }
 
-    // #[Route('/themes')]
-    // public function themespage()
-    // {
-    // }
-
-    #[Route('/{theme}')]
-    public function themepage(string $theme = null)
+    #[Route('/{theme}', name: 'app_theme', methods: ['GET', 'PATCH', 'DELETE'])]
+    public function themepage(string $theme = 'tous')
     {
         if ($theme) {
             $title = str_replace('-', ' ', $theme);
@@ -43,6 +37,7 @@ class CategoryController extends AbstractController
             return $this->render(
                 'themes/themepage.html.twig',
                 [
+                    'theme' => $theme,
                     'title' => $title,
                     'tracks' => $tracks
                 ]
@@ -54,7 +49,7 @@ class CategoryController extends AbstractController
                 ['title' => 'Queer', 'path' => '/themes/queer'],
                 ['title' => 'Tous', 'path' => '/themes/tous']
             ];
-            return $this->render('themes/homepage.html.twig', array(
+            return $this->render('themes/themespage.html.twig', array(
                 'title' => $title,
                 'themes' => $themes
             ));

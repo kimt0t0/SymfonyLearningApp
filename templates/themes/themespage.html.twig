@@ -11,7 +11,9 @@
 <ul class="genre-list ps-0 mt-2 mb-3">
     {% for theme in themes %}
     <li class="d-inline">
-        <a class="btn btn-primary btn-sm" href={{ theme.path }} title={{ theme.title }}>{{ theme.title }}</a>
+        <a class="btn btn-primary btn-sm" href={{ path('app_themes', {
+            theme: theme.theme
+        }) }} title={{ theme.title }}>{{ theme.title }}</a>
     </li>
     {% endfor %}
 </ul>

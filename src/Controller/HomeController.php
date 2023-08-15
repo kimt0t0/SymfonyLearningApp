@@ -8,8 +8,8 @@ use Symfony\Component\Routing\Annotation\Route;
 #[Route('/')]
 class HomeController extends AbstractController
 {
-    #[Route('/')]
-    public function landingpage()
+    #[Route('/', methods: ['GET'], name: 'app_homepage')]
+    public function homepage()
     {
         $title = 'Ma Musique';
         return $this->render('base.html.twig', array(
