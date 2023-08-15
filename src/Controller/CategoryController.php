@@ -6,13 +6,22 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
+#[Route('/themes')]
 class CategoryController extends AbstractController
 {
     #[Route('/')]
     public function landingpage()
     {
-        $title = 'Ma Musique';
-        return $this->render('base.html.twig');
+        $title = 'Thèmes Musicaux';
+        $themes = [
+            ['title' => 'Détente', 'path' => '/themes/detente'],
+            ['title' => 'Queer', 'path' => '/themes/queer'],
+            ['title' => 'Tous', 'path' => '/themes/tous']
+        ];
+        return $this->render('themes/homepage.html.twig', array(
+            'title' => $title,
+            'themes' => $themes
+        ));
     }
 
     // #[Route('/themes')]
@@ -20,7 +29,7 @@ class CategoryController extends AbstractController
     // {
     // }
 
-    #[Route('/themes/{theme}')]
+    #[Route('/{theme}')]
     public function themepage(string $theme = null)
     {
         if ($theme) {
@@ -39,7 +48,7 @@ class CategoryController extends AbstractController
                 ]
             );
         } else {
-            $title = 'Thèmes Musicaux';
+            $title = 'Oups, ce thème ne semble pas exister !';
             $themes = [
                 ['title' => 'Détente', 'path' => '/themes/detente'],
                 ['title' => 'Queer', 'path' => '/themes/queer'],
