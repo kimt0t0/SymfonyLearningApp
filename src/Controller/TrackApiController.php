@@ -25,8 +25,9 @@ class TrackApiController extends AbstractController
         // temporary fake data
         $track = [
             'id' => $id,
-            'name' => 'Waterfalls',
-            'url' => 'https://symfonycasts.s3.amazonaws.com/sample.mp3'
+            'name' => 'Gender Binary',
+            'artist' => ' Ryan Cassata',
+            'filepath' => 'https://www.youtube.com/watch?v=z0n6smGalBM'
         ];
 
         $logger->info('Returning API response for track {track}', [

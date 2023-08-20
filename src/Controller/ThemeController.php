@@ -32,10 +32,10 @@ class ThemeController extends AbstractController
         if ($theme) {
             $title = str_replace('-', ' ', $theme);
             $tracks = [
-                ['song' => 'Rouge Colère', 'artist' => 'Sages comme des Sauvages'],
-                ['song' => 'Gender Binary', 'artist' => ' Ryan Cassata'],
-                ['song' => 'Chaotic Gender Neutral', 'artist' => 'Murder Person for Hire'],
-                ['song' => 'Mad World', 'artist' => 'Gary Jules']
+                ['name' => 'Rouge Colère', 'artist' => 'Sages comme des Sauvages', 'filepath' => 'https://www.youtube.com/watch?v=G8sMws6oNR0'],
+                ['name' => 'Gender Binary', 'artist' => ' Ryan Cassata', 'filepath' => 'https://www.youtube.com/watch?v=z0n6smGalBM'],
+                ['name' => 'Chaotic Gender Neutral', 'artist' => 'Murder Person for Hire', 'filepath' => 'https://www.youtube.com/watch?v=RZjGe90ILDI'],
+                ['name' => 'Mad World', 'artist' => 'Gary Jules', 'filepath' => 'https://www.youtube.com/watch?v=4N3N1MlvVc4']
             ];
             return $this->render(
                 'themes/themepage.html.twig',
